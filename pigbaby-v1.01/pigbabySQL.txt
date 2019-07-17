@@ -1,0 +1,19 @@
+--删除创建库
+drop database if exists pigbaby;
+create database pigbaby default character set 'utf8';
+use pigbaby;
+
+--新建用户表
+drop table if exists sys_users;
+create table sys_users (`id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL COMMENT '用户名',
+  `password` varchar(100) DEFAULT NULL COMMENT '密码',
+  `salt` varchar(50) DEFAULT NULL COMMENT '盐  密码加密时前缀，使加密后的值不同',
+`valid` tinyint(4) DEFAULT NULL COMMENT '状态  0：禁用   1：正常  默认值 ：1',
+`createdTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `modifiedTime` datetime DEFAULT NULL COMMENT '修改时间',
+`createdUser` varchar(20) DEFAULT NULL COMMENT '创建用户',
+  `modifiedUser` varchar(20) DEFAULT NULL COMMENT '修改用户',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `username` (`username`)) 
+
